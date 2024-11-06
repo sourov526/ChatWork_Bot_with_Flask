@@ -76,14 +76,8 @@ def webhook():
 
         if payload["webhook_event_type"] == "mention_to_me":
             openai_response = generate_openai_response(user_message)
-            log_debug("Generated OpenAI response", openai_response)
-
             username = get_username(payload["webhook_event"]["from_account_id"])
-            log_debug("Fetched username", username)
-
             chatwork_room_id = payload["webhook_event"]["room_id"]
-            log_debug("Chatwork room ID", chatwork_room_id)
-
             response_message = f"[To:{payload['webhook_event']['from_account_id']}] {username}\n{openai_response}"
             send_chatwork_message(response_message, chatwork_room_id)
             return jsonify({"status": "success"}), 200
