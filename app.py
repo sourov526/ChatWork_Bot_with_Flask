@@ -74,7 +74,7 @@ def webhook():
         user_message = payload["webhook_event"]["body"][12:]
         log_debug("Extracted user message", user_message)
 
-        if payload["webhook_event_type"] == "mention_to_me":
+        if payload["webhook_event_type"] == "mention_to_me______ind":
             openai_response = generate_openai_response(user_message)
             log_debug("Generated OpenAI response", openai_response)
 
